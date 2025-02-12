@@ -1,0 +1,17 @@
+{
+  "name": "ducker",
+  "version": "1.0.0",
+  "description": "!",
+  "main": "main.js",
+  "author": "Lemonnik6484",
+  "license": "AGPL-3.0",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^33.3.2"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0"
+  }
+}

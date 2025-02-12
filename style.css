@@ -1,0 +1,61 @@
+:root {
+    --bg-color-up: #0e0e0e;
+    --bg-color-down: #181818;
+    --border-color: #413d3c;
+    --main-color-light: #01ec54;
+    --main-color-dark: #2a8648;
+}
+
+#title-bar {
+    height: 30px;
+    background-color: transparent;
+    color: var(--main-color-light);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+}
+
+.title-button {
+    margin-left: 10px;
+    background-color: transparent;
+    color: var(--main-color-dark);
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.title-button:hover {
+    color: var(--main-color-light);
+}
+
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('fonts/MinecraftRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MinecraftRegular';
+    src: url('fonts/PixelCraft.ttf') format('truetype');
+    unicode-range: U+0400-04FF;
+}
+
+body {
+    font-family: MinecraftRegular, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+}
+
+main {
+    border: var(--border-color) solid 30px;
+    padding: 10px;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}

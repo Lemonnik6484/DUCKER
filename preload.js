@@ -19,12 +19,21 @@ const conversation = [
     }
 ];
 
-function write(prefix, msg) {
+function createMessageElement(prefix) {
     const chat = document.getElementById('messages');
     const message = document.createElement('div');
     message.classList.add('message');
-    message.textContent = `${prefix} ${msg}`;
+    message.textContent = prefix;
     chat.appendChild(message);
+    return message;
+}
+
+async function typeText(text, element, speed = 30) {
+    for (const char of text) {
+        element.textContent += char;
+        await new Promise(resolve => setTimeout(resolve, speed));
+        element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
 }
 
 async function generate(prompt) {
@@ -36,10 +45,23 @@ async function generate(prompt) {
         .map(msg => `${msg.role}: ${msg.content}`)
         .join('\n');
 
-    const result = await model.generateContent(contextString);
-    const reply = result.response.text();
-    conversation.push({ role: 'assistant', content: reply });
-    write('SYS>', reply);
+    const messageElement = createMessageElement('SYS> ');
+    let fullResponse = '';
+
+    try {
+        const stream = await model.generateContentStream(contextString);
+
+        for await (const chunk of stream.stream) {
+            const chunkText = chunk.text();
+            await typeText(chunkText, messageElement);
+            fullResponse += chunkText;
+        }
+
+        conversation.push({ role: 'assistant', content: fullResponse });
+    } catch (error) {
+        console.error('Ошибка генерации:', error);
+        messageElement.textContent = 'SYS> Произошла ошибка при генерации ответа';
+    }
 }
 
 contextBridge.exposeInMainWorld('AI', {
@@ -47,7 +69,7 @@ contextBridge.exposeInMainWorld('AI', {
         await generate('');
     },
     send: async (msg) => {
-        write('>', msg);
+        createMessageElement(`> ${msg}`);
         await generate(msg);
     }
 });

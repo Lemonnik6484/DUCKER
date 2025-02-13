@@ -79,3 +79,26 @@ header {
     width: 20vw;
     background: linear-gradient(90deg, var(--main-color-dark), var(--main-color-light));
 }
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 35px;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.indicator {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    background-color: #262626
+}
+
+.indicator.active {
+    background: radial-gradient(circle, rgba(48,233,108,1) 0%, rgba(30,148,71,1) 100%);
+    height: 7px;
+    border-top: #262626 4px solid;
+    border-bottom: #262626 4px solid;
+}

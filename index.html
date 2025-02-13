@@ -9,9 +9,9 @@
 </head>
 <body>
     <div id="title-bar">
-        <button class="title-button" onclick="">_</button>
-        <button class="title-button" onclick="">▢</button>
-        <button class="title-button" onclick="">X</button>
+        <button class="title-button" onclick="window.electronWindow.minimize()">—</button>
+        <button class="title-button" onclick="window.electronWindow.toggleMaximize()">▢</button>
+        <button class="title-button" onclick="window.electronWindow.close()">X</button>
     </div>
 
     <main>
@@ -19,6 +19,6 @@
             У.Т.К.Э.Р.
         </header>
     </main>
-<script src="./script.js"></script>
+<script src="./render.js"></script>
 </body>
 </html>

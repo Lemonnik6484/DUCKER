@@ -1,18 +1,26 @@
-const { app, BrowserWindow } = require('electron/main');
-const path = require('node:path');
+const { app, BrowserWindow } = require('electron')
+const path = require('path')
+const remoteMain = require('@electron/remote/main');
+
+remoteMain.initialize();
 
 function createWindow() {
-    const win = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: path.join(__dirname, 'assets/icon.png'),
+        icon: path.join(__dirname, 'duck.png'),
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-        },
-    });
+            contextIsolation: true,
+            nodeIntegration: false,
+            enableRemoteModule: true,
+            sandbox: false
+        }
+    })
 
-    win.loadFile('index.html');
+    remoteMain.enable(mainWindow.webContents);
+    mainWindow.loadFile('index.html')
 }
 
 app.whenReady().then(() => {

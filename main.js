@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+require('dotenv').config();
+
+const { app, BrowserWindow, Menu, globalShortcut } = require('electron')
 const path = require('path')
 const remoteMain = require('@electron/remote/main');
 
@@ -8,10 +10,9 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        minWidth: 400,
-        minHeight: 300,
-        icon: path.join(__dirname, 'duck.png'),
-        frame: false,
+        minWidth: 600,
+        minHeight: 500,
+        icon: path.join(__dirname, './assets/duck.png'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
@@ -23,6 +24,20 @@ function createWindow() {
 
     remoteMain.enable(mainWindow.webContents);
     mainWindow.loadFile('index.html')
+
+    Menu.setApplicationMenu(null);
+
+    globalShortcut.register('CommandOrControl+R', () => {
+        if (mainWindow) {
+            mainWindow.reload();
+        }
+    });
+
+    globalShortcut.register('CommandOrControl+Shift+I', () => {
+        if (mainWindow) {
+            mainWindow.webContents.openDevTools();
+        }
+    });
 }
 
 app.whenReady().then(() => {

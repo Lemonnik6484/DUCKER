@@ -7,58 +7,24 @@
     --main-color-dark: #2a8648;
 }
 
-#title-bar {
-    height: 30px;
-    background-color: transparent;
-    color: var(--main-color-light);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 10px;
-}
-
-.title-button {
-    margin-left: 10px;
-    background-color: transparent;
-    color: var(--main-color-dark);
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.title-button:hover {
-    color: var(--main-color-light);
-}
-
 @font-face {
-    font-family: 'MinecraftRegular';
-    src: url('fonts/MinecraftRegular.otf') format('opentype');
+    font-family: 'Minecraft';
+    src: url('fonts/minecraft.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'MinecraftRegular';
-    src: url('fonts/PixelCraft.ttf') format('truetype');
-    unicode-range: U+0400-04FF;
-}
 
 body {
-    font-family: MinecraftRegular, sans-serif;
+    font-family: Minecraft, sans-serif;
     line-height: 1.8;
     margin: 0;
     background: linear-gradient(var(--bg-color-dark), var(--bg-color-light));
-}
-
-main {
     border: var(--border-color) solid 30px;
     height: 100vh;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
 header {
@@ -73,7 +39,7 @@ header {
     border-left: 0;
 }
 
-#logo {
+.logo {
     image-rendering: pixelated;
     padding-left: 10px;
     width: 20vw;
@@ -81,11 +47,10 @@ header {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     display: flex;
-    width: calc(100vw - 35px);
     box-sizing: border-box;
     margin-left: 35px;
     margin-bottom: 5px;
@@ -105,10 +70,81 @@ footer {
     border-bottom: #262626 4px solid;
 }
 
-#duck-button {
+.duck-button {
     image-rendering: pixelated;
-    width: 50px;
+    width: 5vw;
     position: absolute;
-    bottom: 32px;
-    right: 32px;
+    bottom: 0;
+    right: 0;
+}
+
+.duck-button:hover {
+    content: url("./assets/lil_duck_hover.png");
+}
+
+.side-bar {
+    width: 20vw;
+    height: 100%;
+    position: absolute;
+    right: 0;
+}
+
+.dialog-logo {
+    width: 100%;
+    image-rendering: pixelated;
+}
+
+#matrix {
+    width: 100%;
+    height: calc(100vh - 20vw - 70px);
+    top: 20vw;
+    position: absolute;
+}
+
+.symbol {
+    position: absolute;
+    white-space: nowrap;
+    color: var(--main-color-light);
+}
+
+.chat {
+    width: calc(100% - 20vw);
+    color: var(--main-color-light);
+    font-size: clamp(16px, 1.5vw + 10px, 32px);
+    font-family: Minecraft, sans-serif;
+    overflow-y: auto;
+    height: 100%;
+    margin: 5px;
+}
+
+#input {
+    background-color: transparent;
+    border: none;
+    color: var(--main-color-light);
+    font-size: clamp(16px, 1.5vw + 10px, 32px);
+    font-family: Minecraft, sans-serif;
+    outline: none;
+    margin-bottom: 2px;
+    width: calc(100% - 5vw);
+    height: 45px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--bg-color-light);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--main-color-darker);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-color-light);
 }

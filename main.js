@@ -1,13 +1,16 @@
 require('dotenv').config();
 
-const { app, BrowserWindow, Menu, globalShortcut } = require('electron')
+const { app, BrowserWindow, Menu, globalShortcut, Tray } = require('electron')
 const path = require('path')
 const remoteMain = require('@electron/remote/main');
 
 remoteMain.initialize();
 
+let mainWindow = null;
+let tray = null;
+
 function createWindow() {
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         minWidth: 600,
@@ -24,6 +27,37 @@ function createWindow() {
 
     remoteMain.enable(mainWindow.webContents);
     mainWindow.loadFile('index.html')
+
+    mainWindow.on('close', (event) => {
+        if (!app.isQuiting) {
+            event.preventDefault();
+            mainWindow.hide();
+        }
+    });
+
+    tray = new Tray(path.join(__dirname, './assets/duck.png'));
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Открыть',
+            click: () => {
+                mainWindow.show();
+            }
+        },
+        {
+            label: 'Выход',
+            click: () => {
+                app.isQuiting = true;
+                app.quit();
+            }
+        }
+    ]);
+
+    tray.setToolTip('У.Т.К.Э.Р.');
+    tray.setContextMenu(contextMenu);
+
+    tray.on('double-click', () => {
+        mainWindow.show();
+    });
 
     Menu.setApplicationMenu(null);
 
@@ -48,10 +82,4 @@ app.whenReady().then(() => {
             createWindow();
         }
     });
-});
-
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
 });

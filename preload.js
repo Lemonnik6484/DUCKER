@@ -74,6 +74,10 @@ async function generate(prompt) {
         }
 
         conversation.push({ role: 'assistant', content: fullResponse });
+        const input = document.getElementById('input');
+        input.disabled = false;
+        input.focus();
+
     } catch (error) {
         console.error('Ошибка генерации:', error);
         messageElement.textContent = 'SYS> Произошла ошибка при генерации ответа';

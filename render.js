@@ -35,11 +35,19 @@ if (window.location.pathname.includes('chat.html')) {
     setInterval(createSymbol, 100);
 
     const input = document.getElementById('input');
+    input.focus();
     input.addEventListener('keyup', async e => {
         if (e.key === 'Enter') {
             const value = input.value;
             input.value = '';
+            input.disabled = true;
             await window.AI.send(value);
         }
     })
+
+    document.onkeydown = function(e) {
+        if (e.key === 'Escape') {
+            window.location.href = "index.html";
+        }
+    }
 }

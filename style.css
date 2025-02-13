@@ -84,9 +84,11 @@ footer {
     position: absolute;
     left: 0;
     bottom: 0;
+    display: flex;
+    width: calc(100vw - 35px);
+    box-sizing: border-box;
     margin-left: 35px;
     margin-bottom: 5px;
-    display: flex;
 }
 
 .indicator {
@@ -97,8 +99,16 @@ footer {
 }
 
 .indicator.active {
-    background: radial-gradient(circle, rgba(48,233,108,1) 0%, rgba(30,148,71,1) 100%);
+    background: radial-gradient(circle, rgb(48, 233, 108), rgb(30, 148, 71));
     height: 7px;
     border-top: #262626 4px solid;
     border-bottom: #262626 4px solid;
+}
+
+#duck-button {
+    image-rendering: pixelated;
+    width: 50px;
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
 }

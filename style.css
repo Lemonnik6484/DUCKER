@@ -1,8 +1,9 @@
 :root {
-    --bg-color-up: #0e0e0e;
-    --bg-color-down: #181818;
+    --bg-color-dark: #0e0e0e;
+    --bg-color-light: #181818;
     --border-color: #413d3c;
     --main-color-light: #01ec54;
+    --main-color-darker: #00b23f;
     --main-color-dark: #2a8648;
 }
 
@@ -50,12 +51,31 @@ body {
     font-family: MinecraftRegular, sans-serif;
     line-height: 1.8;
     margin: 0;
+    background: linear-gradient(var(--bg-color-dark), var(--bg-color-light));
 }
 
 main {
     border: var(--border-color) solid 30px;
-    padding: 10px;
     height: 100vh;
     width: 100%;
     box-sizing: border-box;
+}
+
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding-top: 10px;
+    background: linear-gradient(135deg, var(--main-color-darker), var(--main-color-light));
+    width: 35vw;
+    border-radius: 0 0 30px 0;
+    border: 10px solid var(--main-color-light);
+    border-left: 0;
+}
+
+#logo {
+    image-rendering: pixelated;
+    padding-left: 10px;
+    width: 20vw;
+    background: linear-gradient(90deg, var(--main-color-dark), var(--main-color-light));
 }

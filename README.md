@@ -14,3 +14,5 @@ API_KEY=<YOUR_AI_KEY>
 and then build app with `npm run build`
 
 You can then find executable in dist folder
+
+### ⚠️ App will still run in system tray if you close it ⚠️

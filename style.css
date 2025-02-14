@@ -25,6 +25,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     position: relative;
+    color: var(--main-color-light);
 }
 
 header {
@@ -160,7 +161,7 @@ footer {
     border: 5px solid var(--main-color-light);
     border-left: 0;
     width: 35vw;
-    height: 5vh;
+    height: 8vh;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -6,12 +6,16 @@
   "author": "Lemonnik6484",
   "license": "AGPL-3.0",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --overwrite"
+  },
+  "devDependencies": {
+    "electron": "^34.1.1"
   },
   "dependencies": {
     "@electron/remote": "^2.1.2",
     "@google/generative-ai": "^0.21.0",
     "dotenv": "^16.4.7",
-    "electron": "^34.1.1"
+    "electron-packager": "^17.1.2"
   }
 }

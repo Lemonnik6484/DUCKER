@@ -148,3 +148,35 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--main-color-light);
 }
+
+.buttons {
+    position: absolute;
+    left: 0;
+    top: 20vh;
+}
+
+.button {
+    background-color: var(--bg-color-dark);
+    border: 5px solid var(--main-color-light);
+    border-left: 0;
+    width: 35vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--main-color-light);
+    font-size: clamp(16px, 1.5vw + 15px, 32px);
+}
+
+.button-text {
+    margin: 0 0 10px;
+}
+
+#body-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--main-color-light);
+}

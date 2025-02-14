@@ -44,10 +44,18 @@ if (window.location.pathname.includes('chat.html')) {
             await window.AI.send(value);
         }
     })
+}
 
-    document.onkeydown = function(e) {
-        if (e.key === 'Escape') {
-            window.location.href = "index.html";
-        }
+if (window.location.pathname.includes('info.html')) {
+    const info = document.getElementById('info');
+    const versions = document.getElementById('versions');
+
+    info.innerText = `Сделано Lemonnik`
+    versions.innerText = `Это приложение использует Chrome (v${window.versions.chrome()}), Node.js (v${window.versions.node()}) и Electron (v${window.versions.electron()})`
+}
+
+document.onkeydown = function(e) {
+    if (e.key === 'Escape') {
+        window.location.href = "index.html";
     }
 }
